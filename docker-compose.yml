@@ -1,0 +1,30 @@
+version: "3"
+services:
+    mysql:
+        image: "kuaidaili/mysql:5.7"
+        ports: 
+        - "3306:3306"
+        volumes: 
+        - /var/lib/atlassian-mysql:/var/lib/mysql
+        environment: 
+        - MYSQL_ROOT_PASSWORD=atlassian
+    confluence:
+        image: "kuaidaili/confluence:7.4"
+        ports: 
+        - "8601:8090"
+        volumes: 
+        - ~/confluence:/var/atlassian/confluence
+        environment: 
+        - TZ="Asia/Shanghai"
+        links:
+        - mysql
+    jira:
+        image: "kuaidaili/jira:8.8"
+        ports: 
+        - "8600:8080"
+        volumes: 
+        - ~/jira:/var/atlassian/jira
+        environment: 
+        - TZ="Asia/Shanghai"
+        links:
+        - mysql

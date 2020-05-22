@@ -1,24 +1,24 @@
 <!--
  * @Author: Aladdin
  * @Date: 2020-05-18 16:03:09
- * @LastEditTime: 2020-05-19 16:35:26
+ * @LastEditTime: 2020-05-20 16:44:37
  * @FilePath: /Atlassian/README.md
  * @Description: file description
 --> 
 docker run -itd --name confluence -p 18010:8090 -e TZ="Asia/Shanghai" -v /opt/confluence:/var/atlassian/confluence kuaidaili/confluence:latest
 
-java -jar atlassian-agent.jar -d -m test@test.com -n BAT -p conf -o http://192.168.0.181 -s B8PL-IEY4-4NWQ-S4AV
+java -jar atlassian-agent.jar -d -m test@test.com -n BAT -p conf -o http://192.168.0.181 -s BWOI-VA2G-XZVB-K8G3
 
 
 docker run -itd --name mysql -v /opt/docker-mysql/var/lib/mysql:/var/lib/mysql -v /opt/docker-mysql/mysql.conf.d:/etc/mysql/mysql.conf.d -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 mysql:5.7
 
 # 创建jira数据库及用户
-CREATE DATABASE jiradb CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-grant all on jiradb.* to 'jirauser'@'%' identified by 'jirauser';
+CREATE DATABASE jira CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+grant all on jira.* to 'jira'@'%' identified by 'jira';
 
 # 创建confluence数据库及用户
-CREATE DATABASE confdb CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
-grant all on confdb.* to 'confuser'@'%' identified by 'confuser';
+CREATE DATABASE confluence CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+grant all on confluence.* to 'confluence'@'%' identified by 'confluence';
 
 # 以在my.cnf中配置
 # confluence要求设置事务级别为READ-COMMITTED

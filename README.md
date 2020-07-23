@@ -10,7 +10,7 @@
 
 至于[Docker](https://docs.docker.com/engine/install/)和[Docker Compose](https://docs.docker.com/compose/install/)的安装这里就不再赘述，Docker官方文档讲解的很清楚。
 
-PS：Docker官网下载慢的话可以使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)，Docker镜像拉取慢的话可以使用阿里云的容器镜像服务[镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
+PS：Docker官网下载慢的话可以使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)，Docker镜像拉取慢的话可以使用阿里云的容器镜像服务 [镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
 
 # 制作镜像
 

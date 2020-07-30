@@ -14,7 +14,7 @@ services:
         ports: 
         - "8601:8090"
         volumes: 
-        - ~/confluence:/var/atlassian/confluence
+        - /data/confluence:/var/atlassian/confluence
         environment: 
         - TZ="Asia/Shanghai"
         links:
@@ -25,7 +25,7 @@ services:
         ports: 
         - "8600:8080"
         volumes: 
-        - ~/jira:/var/atlassian/jira
+        - /data/jira:/var/atlassian/jira
         environment: 
         - TZ="Asia/Shanghai"
         links:

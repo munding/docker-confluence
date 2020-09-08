@@ -1,9 +1,7 @@
-# Docker 部署并破解Jira、Confluence及插件
-
 > JIRA是Atlassian公司出品的项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域。
 > Confluence是一个专业的企业知识管理与协同软件，也可以用于构建企业wiki。使用简单，但它强大的编辑和站点管理特征能够帮助团队成员之间共享信息、文档协作、集体讨论，信息推送。
 
-### 准备工具
+# 准备工具
 
 1. Jira镜像：[Docker Hub链接](https://hub.docker.com/r/cptactionhank/atlassian-jira-software)
 2. Confluence镜像：[Docker Hub链接](https://hub.docker.com/r/cptactionhank/atlassian-confluence)
@@ -12,18 +10,18 @@
 
 至于[Docker](https://docs.docker.com/engine/install/)和[Docker Compose](https://docs.docker.com/compose/install/)的安装这里就不再赘述，Docker官方文档讲解的很清楚。
 
-PS：Docker官网下载慢的话可以使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)，Docker镜像拉取慢的话可以使用阿里云的容器镜像服务[镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
+PS：Docker官网下载慢的话可以使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/)，Docker镜像拉取慢的话可以使用阿里云的容器镜像服务 [镜像加速器](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
 
-### 制作镜像
+# 制作镜像
 
-#### Jira
+## Jira
 
 目录结构
 
 ```
-- Jira
-	-- atlassian-agent.jar
-	-- Dockerfile
+Jira/
+    atlassian-agent.jar
+    Dockerfile
 ```
 
 Dockerfile
@@ -46,14 +44,14 @@ RUN echo 'export CATALINA_OPTS="-javaagent:/opt/atlassian/jira/atlassian-agent.j
 docker build -t aladdinding/jira:8.8 .
 ```
 
-#### Confluence
+## Confluence
 
 目录结构
 
 ```
-- Confluence
-	-- atlassian-agent.jar
-	-- Dockerfile
+Confluence/
+    atlassian-agent.jar
+    Dockerfile
 ```
 
 Dockerfile
@@ -76,22 +74,26 @@ RUN echo 'export CATALINA_OPTS="-javaagent:/opt/atlassian/confluence/atlassian-a
 docker build -t aladdinding/confluence:7.4 .
 ```
 
-#### Mysql
+## Mysql
 
 目录结构
 
 ```
-- Mysql
-	-- Dockerfile
-	-- my.cnf
+Mysql/
+    Dockerfile
+    my.cnf
 ```
 
-my.cnf（运行Jira和Confluence的Mysql相关配置）
+my.cnf（运行Jira和Confluence的Mysql相关配置），各个版本的Jira和Confluence的数据库设置可能不太一样，具体查看官方文档：
+
+[Connecting Jira applications to MySQL 5.7](https://confluence.atlassian.com/adminjiraserver/connecting-jira-applications-to-mysql-5-7-966063305.html)
+
+[Database Setup For MySQL](https://confluence.atlassian.com/conf74/database-setup-for-mysql-1003129360.html)
 
 ```
 [mysqld]
-character-set-server=utf8
-collation-server=utf8_bin
+character-set-server=utf8mb4
+collation-server=utf8mb4_bin
 default-storage-engine=INNODB
 max_allowed_packet=512M
 innodb_log_file_size=2GB
@@ -116,7 +118,7 @@ COPY "my.cnf" /etc/mysql/mysql.conf.d
 docker build -t aladdinding/mysql:5.7 .
 ```
 
-### Docker Composeq启动服务
+# Docker Composeq启动服务
 
 docker-compose.yml
 
@@ -162,7 +164,7 @@ docker-compose后台启动
 docker-compose up -d
 ```
 
-### 创建Jira和Confluence数据库及用户
+# 创建Jira和Confluence数据库及用户
 
 进入启动的Mysql容器
 
@@ -182,7 +184,7 @@ CREATE DATABASE confluence CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 grant all on confluence.* to 'confluence'@'%' identified by 'confluence';
 ```
 
-### 初始化及破解Jira
+# 初始化及破解Jira
 
 浏览器访问 IP:8601，如：http://192.168.0.181:8600/
 
@@ -237,7 +239,7 @@ BQBVAk4zg==X02k0
 
 ![](https://img.aladdinding.cn/jira-6.png)
 
-### 初始化及破解Confluence
+# 初始化及破解Confluence
 
 浏览器访问 IP:8601，如：http://192.168.0.181:8601/
 
@@ -271,7 +273,7 @@ jdbc:mysql://mysql/confluence?useUnicode=true&characterEncoding=utf8
 
 ![](https://img.aladdinding.cn/confluence-6.png)
 
-### 配置Confluence于Jira用户数据对接
+# 配置Confluence与Jira用户数据对接
 
 进入JIra选择用户管理-Jira用户服务器-新建应用程序
 
@@ -295,7 +297,7 @@ jdbc:mysql://mysql/confluence?useUnicode=true&characterEncoding=utf8
 
 如果是通过备份还原的Jira及Confluence可以直接禁用之前的用户目录然后移除。其他应用程序关联等设置比较简单，自行操作。
 
-### 插件破解
+# 插件破解
 
 第三方插件将其应用密钥/插件关键字作为-p参数。如：-p 'com.valiantys.spreadsheets'
 
@@ -307,7 +309,7 @@ java -jar atlassian-agent.jar -d -m mytest@mytest.com -n BAT -p 'com.valiantys.s
 
 ![](https://img.aladdinding.cn/confapp-1.png)
 
-### 异常记录
+# 异常记录
 
 **Jira 不支持数据库排序规则“utf8mb4_bin”和表排序规则“utf8mb4_bin”。或者是Jira 不支持表排序规则：“utf8mb4_bin”。Jira 支持数据库排序规则：“utf8_bin”。之类的故障诊断信息。**
 

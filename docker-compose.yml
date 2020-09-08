@@ -17,8 +17,6 @@ services:
         - /data/confluence:/var/atlassian/confluence
         environment: 
         - TZ="Asia/Shanghai"
-        - JVM_MINIMUM_MEMORY=1024m
-        - JVM_MAXIMUM_MEMORY=10240m
         links:
         - mysql
         restart: always

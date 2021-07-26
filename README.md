@@ -108,7 +108,7 @@ services:
         restart: always
 ```
 
-已上传Github：[aladdinding/Docker-Confluence](https://github.com/aladdinding/Confluence-and-Jira)
+已上传Github：[aladdinding/Confluence-and-Jira](https://github.com/aladdinding/Confluence-and-Jira)
 
 ### 运行
 

@@ -215,5 +215,5 @@ https://community.atlassian.com/t5/Confluence-questions/Illegal-reflective-acces
 
 https://community.atlassian.com/t5/Confluence-questions/hibernate-adapter-1-0-3-jar/qaq-p/1281057
 
-结论：暂无解决方法～～～
+结论：等一会就好了，暂无解决方法～～～
 

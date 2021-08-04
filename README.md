@@ -63,13 +63,13 @@ GRANT ALL PRIVILEGES ON <database-name>.* TO '<confluenceuser>'@'localhost' WITH
 
 镜像：[atlassian/confluence-server](https://hub.docker.com/r/atlassian/confluence-server)
 
-破解插件：[atlassian-agent](https://gitee.com/pengzhile/atlassian-agent)
+破解插件：~~[atlassian-agent](https://gitee.com/pengzhile/atlassian-agent)~~ 项目已被私有，无法访问
 
 ### 准备工具
 
 #### 破解插件
 
-[atlassian-agent.jar](https://gitee.com/pengzhile/atlassian-agent/attach_files/283102/download/atlassian-agent-v1.2.3.zip)
+~~[atlassian-agent.jar](https://gitee.com/pengzhile/atlassian-agent/attach_files/283102/download/atlassian-agent-v1.2.3.zip)~~ 直接使用仓库内`atlassian-agent.jar`
 
 #### 数据库驱动
 

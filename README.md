@@ -116,7 +116,7 @@ services:
 docker-compose up -d
 ```
 
-查看日志，发现``则插件正常运行
+查看日志，发现`========= agent working =========`则插件正常运行
 
 ## 初始化配置
 

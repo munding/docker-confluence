@@ -194,16 +194,10 @@ java -jar atlassian-agent.jar -d -m test@test.com -n BAT -p 'jira' -o http://loc
 
 ```
 confluence_1 | WARNING: An illegal reflective access operation has occurred
-
 confluence_1 | WARNING: Illegal reflective access by com.atlassian.hibernate.adapter.proxy.BytecodeProviderImpl_ImplementV2Proxy (file:/opt/atlassian/confluence/confluence/WEB-INF/lib/hibernate.adapter-1.0.3.jar) to field java.lang.reflect.Field.modifiers
-
 confluence_1 | WARNING: Please consider reporting this to the maintainers of com.atlassian.hibernate.adapter.proxy.BytecodeProviderImpl_ImplementV2Proxy
-
 confluence_1 | WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-
 confluence_1 | WARNING: All illegal access operations will be denied in a future release
-
-
 confluence_1 | Security framework of XStream not explicitly initialized, using predefined black list on your own risk.
 ```
 

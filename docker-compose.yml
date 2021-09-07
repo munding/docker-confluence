@@ -3,7 +3,7 @@ services:
     confluence:
         image: "atlassian/confluence-server"
         volumes: 
-            - ./atlassian-agent.jar:/tmp/atlassian-agent.jar
+            - ./atlassian-agent.jar:/var/atlassia/atlassian-agent.jar
             - ./mysql-connector-java-8.0.22.jar:/opt/atlassian/confluence/confluence/WEB-INF/lib/mysql-connector-java-8.0.22.jar
             - ~/your-confluence-home:/var/atlassian/application-data/confluence
         env_file:

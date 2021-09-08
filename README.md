@@ -79,16 +79,6 @@ Mysql 8.0 下载：[mysql-connector-java-8.0.22.jar](https://downloads.mysql.com
 
 Mysql 5.7 下载：[mysql-connector-java-5.1.48.jar](https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-5.1.48.zip)
 
-#### 环境变量(.env)
-
-```e
-JAVA_OPTS="-javaagent:/tmp/atlassian-agent.jar ${JAVA_OPTS}"
-JVM_MINIMUM_MEMORY=2048m
-JVM_MAXIMUM_MEMORY=2048m
-JVM_RESERVED_CODE_CACHE_SIZE=512m
-```
-
-默认内存分配为1024m，如果需要覆盖 Confluence Server 的默认内存分配，可以通过环境变量`JVM_MINIMUM_MEMORY`、`JVM_MAXIMUM_MEMORY`、`JVM_RESERVED_CODE_CACHE_SIZE` 控制最小堆(Xms)和最大堆(Xmx)。
 
 #### docker-compose.yml
 
@@ -98,15 +88,20 @@ services:
     confluence:
         image: "atlassian/confluence-server"
         volumes: 
-            - ./atlassian-agent.jar:/tmp/atlassian-agent.jar
+            - ./atlassian-agent.jar:/var/atlassian/atlassian-agent.jar
             - ./mysql-connector-java-8.0.22.jar:/opt/atlassian/confluence/confluence/WEB-INF/lib/mysql-connector-java-8.0.22.jar
-            - /data/your-confluence-home:/var/atlassian/application-data/confluence
-        env_file:
-            - ./.env
+            - ~/your-confluence-home:/var/atlassian/application-data/confluence
+        environment:
+            - JAVA_OPTS="-javaagent:/var/atlassian/atlassian-agent.jar"
+            - JVM_MINIMUM_MEMORY=2048m
+            - JVM_MAXIMUM_MEMORY=2048m
+            - JVM_RESERVED_CODE_CACHE_SIZE=512m
         ports: 
             - "8090:8090"
         restart: always
 ```
+
+默认内存分配为1024m，如果需要覆盖 Confluence Server 的默认内存分配，可以通过环境变量`JVM_MINIMUM_MEMORY`、`JVM_MAXIMUM_MEMORY`、`JVM_RESERVED_CODE_CACHE_SIZE` 控制最小堆(Xms)和最大堆(Xmx)。
 
 已上传Github：[aladdinding/Confluence-and-Jira](https://github.com/aladdinding/Confluence-and-Jira)
 

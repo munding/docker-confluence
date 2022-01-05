@@ -90,7 +90,7 @@ services:
         volumes: 
             - ./atlassian-agent.jar:/var/atlassian/atlassian-agent.jar
             - ./mysql-connector-java-8.0.22.jar:/opt/atlassian/confluence/confluence/WEB-INF/lib/mysql-connector-java-8.0.22.jar
-            - ~/your-confluence-home:/var/atlassian/application-data/confluence
+            - /your-confluence-home:/var/atlassian/application-data/confluence
         environment:
             - JAVA_OPTS="-javaagent:/var/atlassian/atlassian-agent.jar"
             - JVM_MINIMUM_MEMORY=2048m

@@ -103,7 +103,6 @@ services:
 
 默认内存分配为1024m，如果需要覆盖 Confluence Server 的默认内存分配，可以通过环境变量`JVM_MINIMUM_MEMORY`、`JVM_MAXIMUM_MEMORY`、`JVM_RESERVED_CODE_CACHE_SIZE` 控制最小堆(Xms)和最大堆(Xmx)。
 
-已上传Github：[aladdinding/Confluence-and-Jira](https://github.com/aladdinding/Confluence-and-Jira)
 
 ### 运行
 

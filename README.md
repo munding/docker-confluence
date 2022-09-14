@@ -208,3 +208,8 @@ https://community.atlassian.com/t5/Confluence-questions/hibernate-adapter-1-0-3-
 - 等待一段时间会自动运行正常
 - 非法反射访问错误是Java9添加的，所以尝试在Java8上运行Confluence，不过官方最新镜像都是Java11了！
 
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
